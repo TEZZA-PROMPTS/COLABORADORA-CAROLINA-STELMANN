@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- TÍTULO LIMPO PARA O LINK -->
+  <title>CAROLINA STELMANN • TEZZA PROMPTS</title>
+
+  <!-- CONFIGURAÇÃO PARA O LINK FICAR COMPACTO -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CAROLINA STELMANN • TEZZA PROMPTS">
+  <meta property="og:title" content="CAROLINA STELMANN • TEZZA PROMPTS">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tezza-prompts.github.io/COLABORADORA-CAROLINA STELMANN/COPIAR%20GEMINI.html">
+  <meta name="description" content="TEZZA PROMPTS OFICIAL">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Estilo para o cursor personaCAROLINA STELMANNado com a flor branca */
+    html, body, a, button {
+      cursor: url('https://i.ibb.co/Yn7bsxx/Chat-GPT-Image-7-de-jun-de-2026-19-46-02.png') 64 64, auto;
+    }
+
+    .background-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image: url('https://i.ibb.co/fY3W3cv9/710156920-1568749581287649-6731854580978562828-n-upscayl-5x-digital-art-4x.png');
+      background-size: cover;
+      background-position: center;
+      filter: blur(4px) brightness(1.05);
+      transform: scale(1.05);
+      background-repeat: no-repeat;
+    }
+
+    body {
+      font-family: 'Poppins', 'Lora', serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgba(253, 250, 243, 0.45);
+      min-height: 100vh;
+      color: #3e4a3b;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 60px 20px 20px;
+      text-align: center;
+    }
+
+    .title-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .title-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -45px;
+      left: -35px;
+      width: 100px;
+      height: 100px;
+      background-image: url('https://i.ibb.co/twhrqvXX/Chat-GPT-Image-9-de-jun- de-2026-22-06-20.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.95;
+      z-index: 3;
+    }
+
+    header h1 {
+      font-family: 'Cinzel', serif;
+      margin: 0;
+      font-size: 4rem;
+      color: #5c6b58;
+      letter-spacing: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
+      position: relative;
+      z-index: 2;
+    }
+
+    header p {
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 10px;
+      color: #5c6b58;
+      font-size: 1rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto 60px;
+      padding: 0 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .prompt-box {
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 150px 15px 150px 15px;
+      padding: 60px 50px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 192, 203, 0.2);
+      position: relative;
+      max-width: 600px;
+      width: 100%;
+      overflow: visible;
+    }
+
+    .prompt-box::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: -40px;
+      width: 180px;
+      height: 180px;
+      background-image: url('https://i.ibb.co/20B026Xd/Chat-GPT-Image-7-de-jun-de-2026-19-39-09.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.95;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .prompt-box::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      right: -40px;
+      width: 180px;
+      height: 180px;
+      background-image: url('https://i.ibb.co/20B026Xd/Chat-GPT-Image-7-de-jun-de-2026-19-39-09.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.95;
+      transform: rotate(180deg);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .prompt-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      margin-bottom: 25px;
+      font-size: 1.3rem;
+      color: #5c6b58;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pre-container {
+      position: relative;
+      z-index: 2;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 40px 5px 40px 5px;
+      border: 1px solid #eef2ed;
+      font-size: 1rem;
+      line-height: 1.6;
+      user-select: text;
+      color: #444;
+      text-align: left;
+      font-family: 'Poppins', sans-serif;
+      transition: opacity 0.3s ease;
+    }
+
+    .copy-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      background: #5c6b58;
+      color: white;
+      padding: 20px;
+      border-radius: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      display: none;
+      z-index: 3;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      animation: fadeIn 0.4s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    button {
+      display: inline-block;
+      min-width: 220px;
+      margin-top: 30px;
+      background: #5c6b58;
+      color: #ffffff;
+      border: none;
+      padding: 16px 40px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    button:hover {
+      background: #4a5747;
+      transform: scale(1.03);
+      box-shadow: 0 8px 20px rgba(92, 107, 88, 0.2);
+    }
+
+    .hint {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #7d8c7a;
+      font-style: italic;
+      position: relative;
+      z-index: 2;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.8rem;
+      color: #5c6b58;
+      opacity: 0.8;
+      line-height: 1.6;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    /* Partículas usando a nova flor branca */
+    .flower-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      background-image: url('https://i.ibb.co/Yn7bsxx/Chat-GPT-Image-7-de-jun-de-2026-19-46-02.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 20px;
+      height: 20px;
+      transition: transform 1.5s ease-out, opacity 1.5s ease-out;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="background-overlay"></div>
+
+<header>
+  <div class="title-wrapper">
+    <h1>CAROLINA STELMANN</h1>
+  </div>
+  <p>TEZZA PROMPTS OFICIAL</p>
+</header>
+
+<div class="container">
+
+  <div class="prompt-box">
+    <div class="prompt-title">CAROLINA STELMANN COLABORADORA</div>
+
+    <div class="pre-container">
+      <pre id="prompt1">
+GEMINI   [MODO]
+        
+[COLOQUE AQUI O SEU PROMPT]
+
+        
+</pre>
+      <div id="copySuccess" class="copy-message">
+        PROMPT COPIADO!<br>MARQUE @vu.carolinna
+      </div>
+    </div>
+
+    <button id="copyBtn" onclick="copyAndAnimate('prompt1')">Copiar Prompt</button>
+    <div class="hint">Se o botão não funcionar, selecione o texto e copie manualmente.</div>
+  </div>
+
+</div>
+
+<footer>
+  MARQUE @vu.carolinna<br>
+  CAROLINA STELMANN • TEZZA PROMPTS — Conteúdo protegido.
+</footer>
+
+<script>
+  function copyAndAnimate(id) {
+    copyFallback(id);
+    createHeartEffect();
+  }
+
+  function copyFallback(id) {
+    const el = document.getElementById(id);
+    const msg = document.getElementById('copySuccess');
+    
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    
+    try {
+      document.execCommand('copy');
+      el.style.opacity = '0.1';
+      msg.style.display = 'block';
+      setTimeout(() => {
+        el.style.opacity = '1';
+        msg.style.display = 'none';
+      }, 3000);
+    } catch (err) {
+      alert('Erro ao copiar. Por favor, copie manualmente.');
+    }
+    selection.removeAllRanges();
+  }
+
+  function createHeartEffect() {
+    const btn = document.getElementById('copyBtn');
+    const rect = btn.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const particlesCount = 40;
+    const heartScale = 15;
+
+    for (let i = 0; i < particlesCount; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'flower-particle';
+      document.body.appendChild(particle);
+
+      const angle = (i / particlesCount) * 2 * Math.PI;
+      const x = 16 * Math.pow(Math.sin(angle), 3);
+      const y = -(13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle));
+
+      particle.style.left = centerX + 'px';
+      particle.style.top = centerY + 'px';
+      particle.style.opacity = '1';
+      particle.style.transform = 'translate(-50%, -50%) scale(0.5)';
+
+      particle.offsetHeight;
+
+      const targetX = x * heartScale;
+      const targetY = y * heartScale;
+      const randomRotation = Math.random() * 360;
+
+      particle.style.transform = `translate(calc(-50% + ${targetX}px), calc(-50% + ${targetY}px)) scale(${0.8 + Math.random()}) rotate(${randomRotation}deg)`;
+      particle.style.opacity = '0';
+
+      setTimeout(() => {
+        particle.remove();
+      }, 1500);
+    }
+  }
+</script>
+
+</body>
+</html>
