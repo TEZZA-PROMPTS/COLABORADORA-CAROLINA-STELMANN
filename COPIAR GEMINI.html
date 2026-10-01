@@ -35,7 +35,7 @@
       background-size: cover;
       background-position: center center;
       background-color: #f1dce8;
-      filter: blur(3px) brightness(1.05);
+      filter: blur(0) brightness(1.04) saturate(1.06);
       transform: scale(1.0);
       background-repeat: no-repeat;
     }
@@ -61,17 +61,7 @@
     }
 
     .title-wrapper::before {
-      content: '';
-      position: absolute;
-      top: -45px;
-      left: -35px;
-      width: 100px;
-      height: 100px;
-      background-image: url('https://i.imgur.com/RKflutf.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      opacity: 0.95;
-      z-index: 3;
+      display: none;
     }
 
     header h1 {
@@ -119,6 +109,12 @@
       max-width: 600px;
       width: 100%;
       overflow: visible;
+    }
+
+    /* Sem corações ou decorações dentro da caixa de prompts */
+    .prompt-box::before,
+    .prompt-box::after {
+      display: none;
     }
 
     .prompt-box::before {
@@ -262,6 +258,56 @@
     }
 
     /* Partículas usando a nova flor branca */
+    /* Brilhos aleatórios, fofos e delicados caindo sobre o fundo */
+    .falling-sparkle {
+      position: fixed;
+      top: -22px;
+      left: 0;
+      width: var(--sparkle-size);
+      height: var(--sparkle-size);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 5;
+      color: var(--sparkle-color);
+      background: radial-gradient(circle, #ffffff 0 22%, var(--sparkle-color) 45%, transparent 76%);
+      box-shadow: 0 0 7px 2px rgba(255,255,255,0.78), 0 0 16px 4px var(--sparkle-glow);
+      animation: sparkleFall var(--fall-duration) linear forwards, sparklePulse var(--pulse-duration) ease-in-out infinite;
+      animation-delay: var(--fall-delay), var(--pulse-delay);
+    }
+
+    .falling-sparkle::before {
+      content: '✦';
+      position: absolute;
+      inset: -0.75em;
+      display: grid;
+      place-items: center;
+      color: var(--sparkle-color);
+      font-size: calc(var(--sparkle-size) * 2.5);
+      line-height: 1;
+      text-shadow: 0 0 8px var(--sparkle-glow);
+      opacity: 0.9;
+    }
+
+    .falling-sparkle.sparkle-dot::before { content: '•'; font-size: calc(var(--sparkle-size) * 2); }
+    .falling-sparkle.sparkle-diamond::before { content: '✧'; font-size: calc(var(--sparkle-size) * 2.8); }
+    .falling-sparkle.sparkle-cross::before { content: '+'; font-size: calc(var(--sparkle-size) * 2.4); }
+
+    @keyframes sparkleFall {
+      from { transform: translate3d(0, -25px, 0) rotate(0deg); opacity: 0; }
+      12% { opacity: 0.96; }
+      55% { opacity: 0.72; }
+      to { transform: translate3d(var(--drift), 115vh, 0) rotate(var(--rotation)); opacity: 0; }
+    }
+
+    @keyframes sparklePulse {
+      0%, 100% { scale: 0.65; filter: brightness(0.9); }
+      50% { scale: 1.45; filter: brightness(1.45); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .falling-sparkle { animation: none; display: none; }
+    }
+
     .flower-particle {
       position: fixed;
       pointer-events: none;
@@ -319,7 +365,6 @@ GEMINI   [MODO]
 <script>
   function copyAndAnimate(id) {
     copyFallback(id);
-    createHeartEffect();
   }
 
   function copyFallback(id) {
@@ -346,43 +391,33 @@ GEMINI   [MODO]
     selection.removeAllRanges();
   }
 
-  function createHeartEffect() {
-    const btn = document.getElementById('copyBtn');
-    const rect = btn.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    
-    const particlesCount = 40;
-    const heartScale = 15;
-
-    for (let i = 0; i < particlesCount; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'flower-particle';
-      document.body.appendChild(particle);
-
-      const angle = (i / particlesCount) * 2 * Math.PI;
-      const x = 16 * Math.pow(Math.sin(angle), 3);
-      const y = -(13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle));
-
-      particle.style.left = centerX + 'px';
-      particle.style.top = centerY + 'px';
-      particle.style.opacity = '1';
-      particle.style.transform = 'translate(-50%, -50%) scale(0.5)';
-
-      particle.offsetHeight;
-
-      const targetX = x * heartScale;
-      const targetY = y * heartScale;
-      const randomRotation = Math.random() * 360;
-
-      particle.style.transform = `translate(calc(-50% + ${targetX}px), calc(-50% + ${targetY}px)) scale(${0.8 + Math.random()}) rotate(${randomRotation}deg)`;
-      particle.style.opacity = '0';
-
-      setTimeout(() => {
-        particle.remove();
-      }, 1500);
-    }
+  function createFallingSparkle() {
+    const sparkle = document.createElement('span');
+    const shapes = ['star', 'dot', 'diamond', 'cross'];
+    const colors = ['#ffffff', '#ffe8f5', '#f7d9ff', '#e8f7ff', '#fff3c7'];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+    sparkle.className = `falling-sparkle sparkle-${shape}`;
+    sparkle.style.left = `${Math.random() * 100}vw`;
+    sparkle.style.setProperty('--sparkle-size', `${3 + Math.random() * 8}px`);
+    sparkle.style.setProperty('--sparkle-color', color);
+    sparkle.style.setProperty('--sparkle-glow', color);
+    sparkle.style.setProperty('--drift', `${-140 + Math.random() * 280}px`);
+    sparkle.style.setProperty('--rotation', `${-240 + Math.random() * 480}deg`);
+    sparkle.style.setProperty('--fall-duration', `${4.5 + Math.random() * 6}s`);
+    sparkle.style.setProperty('--pulse-duration', `${0.7 + Math.random() * 1.2}s`);
+    sparkle.style.setProperty('--fall-delay', `${Math.random() * 0.8}s`);
+    sparkle.style.setProperty('--pulse-delay', `${Math.random() * 0.5}s`);
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 12000);
   }
+
+  // Mantém uma quantidade suave e contínua de brilhos caindo.
+  setInterval(createFallingSparkle, 420);
+  for (let i = 0; i < 10; i++) {
+    setTimeout(createFallingSparkle, i * 240);
+  }
+
 </script>
 
 </body>
