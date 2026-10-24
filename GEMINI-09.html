@@ -319,12 +319,73 @@
       height: 20px;
       transition: transform 1.5s ease-out, opacity 1.5s ease-out;
     }
+
+    .music-entry {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(82, 53, 75, 0.18);
+      backdrop-filter: blur(8px);
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .music-entry.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .music-entry-box {
+      width: min(100%, 520px);
+      padding: 54px 34px;
+      text-align: center;
+      border-radius: 150px 15px 150px 15px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.40), rgba(255,225,244,0.20));
+      border: 1px solid rgba(255,255,255,0.70);
+      box-shadow: 0 20px 50px rgba(255,255,255,0.24), 0 8px 30px rgba(77,55,72,0.18), inset 0 0 28px rgba(255,255,255,0.15);
+      backdrop-filter: blur(15px);
+    }
+
+    .music-entry-title {
+      margin: 0 0 12px;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 5vw, 2.2rem);
+      letter-spacing: 4px;
+      color: #fffdfd;
+      text-shadow: 0 2px 12px rgba(255,255,255,0.85);
+    }
+
+    .music-entry-text {
+      margin: 0 0 26px;
+      color: #fffdfd;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 10px rgba(80,45,70,0.35);
+    }
+
+    .music-entry-button {
+      margin-top: 0;
+    }
   </style>
 </head>
 
 <body>
 
 <div class="background-overlay"></div>
+
+<!-- Coloque o arquivo de áudio obtido legalmente na mesma pasta deste HTML. -->
+<audio id="backgroundMusic" src="musiccarol.mp3" loop preload="auto"></audio>
+
+<div id="musicEntry" class="music-entry">
+  <div class="music-entry-box">
+    <h2 class="music-entry-title">BEM VINDOS</h2>
+    <p class="music-entry-text">Clique abaixo para entrar</p>
+    <button id="enterMusicBtn" class="music-entry-button">Clique aqui</button>
+  </div>
+</div>
 
 <header>
   <div class="title-wrapper">
@@ -341,7 +402,7 @@
     <div class="pre-container">
       <pre id="prompt1">
         
-```text
+        
 Ultra-realistic cinematic avatar 3D female portrait, Blender Cycles render in CGI, inspired by Seedream 5.0 beauty realism and high-end IMVU/The Sims virtual aesthetics. Clearly a fictional digital avatar and not a real photograph. Hyper-detailed virtual influencer design with stylized CGI beauty proportions, luxury editorial aesthetics, advanced cinematic lighting, ultra-polished 3D rendering, and “TEZZA PROMPTS” text at the bottom center in elegant minimalist typography.
 
 CAMERA & COMPOSITION
@@ -399,7 +460,8 @@ Bold Y2K streetwear aesthetic mixed with rebellious luxury fashion, playful atti
 STYLE & RENDER QUALITY
 
 Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 beauty rendering, 8K UHD quality, physically accurate lighting and materials, realistic skin micro-detail, IMVU-inspired beauty repaint style, high-fidelity female avatar rendering, realistic depth of field, glossy beauty aesthetic, polished virtual influencer atmosphere, advanced ray tracing, realistic reflections, luxury editorial lighting, ultra-clean cinematic render quality, and clearly fictional CGI avatar aesthetics instead of a real photograph.
-```
+
+        
         
 </pre>
       <div id="copySuccess" class="copy-message">
@@ -470,9 +532,19 @@ Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 
 
   // Mantém uma quantidade suave e contínua de brilhos caindo.
   setInterval(createFallingSparkle, 420);
-  for (let i = 0; i < 10; i++) {
-    setTimeout(createFallingSparkle, i * 240);
-  }
+	  for (let i = 0; i < 10; i++) {
+	    setTimeout(createFallingSparkle, i * 240);
+	  }
+
+  // A música começa somente quando a visitante clica na entrada de vidro.
+  const backgroundMusic = document.getElementById('backgroundMusic');
+  const musicEntry = document.getElementById('musicEntry');
+  const enterMusicBtn = document.getElementById('enterMusicBtn');
+  enterMusicBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    backgroundMusic.play().catch(() => {});
+    musicEntry.classList.add('hidden');
+  });
 
 </script>
 
