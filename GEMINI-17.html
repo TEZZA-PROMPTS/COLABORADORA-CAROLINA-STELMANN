@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- TÍTULO LIMPO PARA O LINK -->
+  <title>CAROLINA STELMANN • TEZZA PROMPTS</title>
+
+  <!-- CONFIGURAÇÃO PARA O LINK FICAR COMPACTO -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CAROLINA STELMANN • TEZZA PROMPTS">
+  <meta property="og:title" content="CAROLINA STELMANN • TEZZA PROMPTS">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tezza-prompts.github.io/COLABORADORA-CAROLINA STELMANN/COPIAR%20GEMINI.html">
+  <meta name="description" content="TEZZA PROMPTS OFICIAL">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;500&family=Lora:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Estilo para o cursor personaCAROLINA STELMANNado com a flor branca */
+    html, body, a, button {
+      cursor: url('https://i.imgur.com/RKflutf.png') 64 64, auto;
+    }
+
+    .background-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image: url('https://i.imgur.com/eWYWDIo.jpeg');
+      /* Tamanho responsivo para preencher a tela sem deformar a imagem */
+      background-size: cover;
+      background-position: center center;
+      background-color: #f1dce8;
+      filter: blur(0) brightness(1.04) saturate(1.06);
+      transform: scale(1.0);
+      background-repeat: no-repeat;
+    }
+
+    body {
+      font-family: 'Poppins', 'Lora', serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgba(253, 250, 243, 0.45);
+      min-height: 100vh;
+      color: #fffdfd; text-shadow: 0 1px 12px rgba(255,255,255,0.75);
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 60px 20px 20px;
+      text-align: center;
+    }
+
+    .title-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .title-wrapper::before {
+      display: none;
+    }
+
+    header h1 {
+      font-family: 'Cinzel', serif;
+      margin: 0;
+      font-size: 4rem;
+      color: #fffdfd; text-shadow: 0 2px 12px rgba(255,255,255,0.85);
+      letter-spacing: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
+      position: relative;
+      z-index: 2;
+    }
+
+
+    header p {
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 10px;
+      color: #fffdfd; text-shadow: 0 2px 12px rgba(255,255,255,0.85);
+      font-size: 1rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto 60px;
+      padding: 0 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .prompt-box {
+      background: rgba(255, 255, 255, 0.22);
+      border-radius: 150px 15px 150px 15px;
+      padding: 60px 50px;
+      box-shadow: 0 20px 50px rgba(255,255,255,0.24), 0 8px 30px rgba(77,55,72,0.15), inset 0 0 28px rgba(255,255,255,0.12);
+      text-align: center;
+      backdrop-filter: blur(15px);
+      background-image: linear-gradient(135deg, rgba(255,255,255,0.38), rgba(255,225,244,0.16));
+      border: 1px solid rgba(255,255,255,0.62);
+      position: relative;
+      max-width: 600px;
+      width: 100%;
+      overflow: visible;
+    }
+
+    /* Sem corações ou decorações dentro da caixa de prompts */
+    .prompt-box::before,
+    .prompt-box::after {
+      display: none;
+    }
+
+    .prompt-box::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: -40px;
+      width: 180px;
+      height: 180px;
+      background-image: url('https://i.imgur.com/RKflutf.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.95;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .prompt-box::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      right: -40px;
+      width: 180px;
+      height: 180px;
+      background-image: url('https://i.imgur.com/RKflutf.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.95;
+      transform: rotate(180deg);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .prompt-title {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      margin-bottom: 25px;
+      font-size: 1.3rem;
+      color: #fffdfd; text-shadow: 0 2px 12px rgba(255,255,255,0.85);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pre-container {
+      position: relative;
+      z-index: 2;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background: rgba(255,255,255,0.38);
+      padding: 25px;
+      border-radius: 40px 5px 40px 5px;
+      border: 1px solid rgba(255,255,255,0.68);
+      font-size: 1rem;
+      line-height: 1.6;
+      user-select: text;
+      color: #444;
+      text-align: left;
+      font-family: 'Poppins', sans-serif;
+      transition: opacity 0.3s ease;
+    }
+
+    .copy-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(255,247,252,0.80));
+      color: #6d5b68;
+      padding: 20px;
+      border-radius: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 1rem;
+      display: none;
+      z-index: 3;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      animation: fadeIn 0.4s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    button {
+      display: inline-block;
+      min-width: 220px;
+      margin-top: 30px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(255,247,252,0.80));
+      color: #6d5b68;
+      border: 1px solid rgba(255,255,255,0.95);
+      padding: 16px 40px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 18px rgba(255,255,255,0.42);
+      position: relative;
+      z-index: 2;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, rgba(255,255,255,1), rgba(248,237,246,0.92));
+      transform: scale(1.03);
+      box-shadow: 0 8px 24px rgba(255,255,255,0.38), 0 0 18px rgba(255,225,244,0.42);
+    }
+
+    .hint {
+      margin-top: 20px;
+      font-size: 0.72rem;
+      color: #111111;
+      text-shadow: none;
+      font-style: italic;
+      font-weight: 400;
+      position: relative;
+      z-index: 2;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.8rem;
+      color: #fffdfd; text-shadow: 0 2px 12px rgba(255,255,255,0.85);
+      opacity: 0.8;
+      line-height: 1.6;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    /* Partículas usando a nova flor branca */
+    /* Brilhos aleatórios, fofos e delicados caindo sobre o fundo */
+    .falling-sparkle {
+      position: fixed;
+      top: -22px;
+      left: 0;
+      width: var(--sparkle-size);
+      height: var(--sparkle-size);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 5;
+      color: var(--sparkle-color);
+      background: radial-gradient(circle, #ffffff 0 22%, var(--sparkle-color) 45%, transparent 76%);
+      box-shadow: 0 0 7px 2px rgba(255,255,255,0.78), 0 0 16px 4px var(--sparkle-glow);
+      animation: sparkleFall var(--fall-duration) linear forwards, sparklePulse var(--pulse-duration) ease-in-out infinite;
+      animation-delay: var(--fall-delay), var(--pulse-delay);
+    }
+
+    .falling-sparkle::before {
+      content: '✦';
+      position: absolute;
+      inset: -0.75em;
+      display: grid;
+      place-items: center;
+      color: var(--sparkle-color);
+      font-size: calc(var(--sparkle-size) * 2.5);
+      line-height: 1;
+      text-shadow: 0 0 8px var(--sparkle-glow);
+      opacity: 0.9;
+    }
+
+    .falling-sparkle.sparkle-dot::before { content: '•'; font-size: calc(var(--sparkle-size) * 2); }
+    .falling-sparkle.sparkle-diamond::before { content: '✧'; font-size: calc(var(--sparkle-size) * 2.8); }
+    .falling-sparkle.sparkle-cross::before { content: '+'; font-size: calc(var(--sparkle-size) * 2.4); }
+
+    @keyframes sparkleFall {
+      from { transform: translate3d(0, -25px, 0) rotate(0deg); opacity: 0; }
+      12% { opacity: 0.96; }
+      55% { opacity: 0.72; }
+      to { transform: translate3d(var(--drift), 115vh, 0) rotate(var(--rotation)); opacity: 0; }
+    }
+
+    @keyframes sparklePulse {
+      0%, 100% { scale: 0.65; filter: brightness(0.9); }
+      50% { scale: 1.45; filter: brightness(1.45); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .falling-sparkle { animation: none; display: none; }
+    }
+
+    .flower-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      background-image: url('https://i.imgur.com/RKflutf.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 20px;
+      height: 20px;
+      transition: transform 1.5s ease-out, opacity 1.5s ease-out;
+    }
+
+    .music-entry {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(82, 53, 75, 0.18);
+      backdrop-filter: blur(8px);
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .music-entry.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .music-entry-box {
+      width: min(100%, 520px);
+      padding: 54px 34px;
+      text-align: center;
+      border-radius: 150px 15px 150px 15px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.40), rgba(255,225,244,0.20));
+      border: 1px solid rgba(255,255,255,0.70);
+      box-shadow: 0 20px 50px rgba(255,255,255,0.24), 0 8px 30px rgba(77,55,72,0.18), inset 0 0 28px rgba(255,255,255,0.15);
+      backdrop-filter: blur(15px);
+    }
+
+    .music-entry-title {
+      margin: 0 0 12px;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.4rem, 5vw, 2.2rem);
+      letter-spacing: 4px;
+      color: #fffdfd;
+      text-shadow: 0 2px 12px rgba(255,255,255,0.85);
+    }
+
+    .music-entry-text {
+      margin: 0 0 26px;
+      color: #fffdfd;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 10px rgba(80,45,70,0.35);
+    }
+
+    .music-entry-button {
+      margin-top: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="background-overlay"></div>
+
+<!-- Coloque o arquivo de áudio obtido legalmente na mesma pasta deste HTML. -->
+<audio id="backgroundMusic" src="musiccarol.mp3" loop preload="auto"></audio>
+
+<div id="musicEntry" class="music-entry">
+  <div class="music-entry-box">
+    <h2 class="music-entry-title">BEM VINDOS</h2>
+    <p class="music-entry-text">Clique abaixo para entrar</p>
+    <button id="enterMusicBtn" class="music-entry-button">Clique aqui</button>
+  </div>
+</div>
+
+<header>
+  <div class="title-wrapper">
+    <h1>CAROLINA STELMANN</h1>
+  </div>
+  <p>TEZZA PROMPTS OFICIAL</p>
+</header>
+
+<div class="container">
+
+  <div class="prompt-box">
+    <div class="prompt-title">CAROLINA STELMANN COLABORADORA</div>
+    <div class="prompt-title">GEMINI [MODO PRO]</div>
+    <div class="pre-container">
+      <pre id="prompt1">
+        
+```text
+Ultra-realistic cinematic avatar 3D female portrait, Blender Cycles render in CGI, inspired by Seedream 5.0 beauty realism and high-end IMVU/The Sims virtual aesthetics. Clearly a fictional digital avatar and not a real photograph. Hyper-detailed virtual influencer design with stylized CGI beauty proportions, luxury editorial aesthetics, advanced cinematic lighting, ultra-polished 3D rendering, and “TEZZA PROMPTS” text at the bottom center in elegant minimalist typography.
+
+CAMERA & COMPOSITION
+
+Vertical 9:16 aspect ratio cinematic Halloween portrait. Medium close-up framing from the waist to the top of the head. Three-quarter camera angle with the subject positioned slightly to the side of the frame against a soft neutral gray background. Sharp focus on the face, eyes, hair, bandages, hand, and upper body with soft cinematic depth of field and subtle atmospheric shadows.
+
+POSE & BODY POSITIONING
+
+Subject standing in a relaxed yet dramatic fashion pose. One hand raised near the mouth with the fingers gently touching the lower lip, creating a mysterious editorial gesture. Body slightly angled sideways with one shoulder subtly turned toward the camera. The other arm partially covered in loosely wrapped mummy bandages, enhancing the Halloween-inspired silhouette.
+
+HEAD POSITION & GAZE
+
+Head turned slightly toward the camera with the chin subtly lowered. Eyes directed intensely toward the lens with a seductive and mysterious gaze. Bandages crossing the forehead, cheeks, nose, and lower face while leaving the eyes and part of the lips visible. Long dark hair falling naturally over the back and shoulder.
+
+FACIAL EXPRESSION
+
+Mysterious and confident facial expression with slightly parted deep red glossy lips. Intense smoky eyes and dark dramatic makeup create a seductive gothic-Halloween mood. A small streak of theatrical red blood extends from the corner of the mouth, adding a dark cinematic detail.
+
+FACE & IDENTITY
+
+Adult female CGI avatar with a softly sculpted oval facial structure, broad forehead, defined natural dark eyebrows, large almond-shaped hazel brown eyes, subtly hooded eyelids, long dark eyelashes, straight nose with a rounded tip, full glossy lips, softly rounded cheeks, and a gently defined jawline. Warm light-medium skin tone with natural freckles across the cheeks and nose, visible realistic skin texture, subtle pores, delicate facial details, and refined beauty realism while maintaining a stylized CGI avatar appearance instead of photoreal human rendering. Preserve the distinctive facial proportions, eye shape, eyebrow structure, nose shape, lip fullness, freckles, and overall visual identity.
+
+HAIR
+
+Long black straight hair with a natural center part, smooth strands flowing over the back and one shoulder. Hair features soft volume, realistic strand detail, silky reflections, and loose face-framing strands around the bandaged forehead and cheeks. Smooth salon-quality texture with cinematic shine and advanced Blender-style hair simulation.
+
+ACCESSORIES & DETAILS
+
+Silver septum ring with metallic reflections centered beneath the nose. Small subtle silver lower-lip stud. Wide cream-colored fabric bandages wrapped around the forehead, cheeks, nose, neck, shoulders, arms, and torso with realistic layered texture, soft frayed edges, gentle wrinkles, and natural overlapping folds. The bandages appear slightly aged and stained with subtle theatrical red blood details. No tattoos.
+
+OUTFIT
+
+Mummy-inspired Halloween outfit formed from layered cream-colored fabric bandages wrapped around the upper body, shoulders, arms, and torso. One shoulder partially exposed beneath the loose bandage layers, creating an elegant fashion-editorial silhouette. Visible dark neutral underlayer beneath the wraps with realistic fabric texture and refined gothic costume styling.
+
+BODY & PHYSIQUE
+
+Slim thick feminine physique with curvy waistline, wide hips, smooth body transitions, and full feminine proportions inspired by premium IMVU/Sims-style avatar aesthetics. Elegant shoulder, arm, and hand positioning with polished cinematic CGI contour shading.
+
+SKIN & REALISM
+
+Ultra-detailed Seedream 5.0 skin rendering with realistic pores, subtle glossy highlights, hydrated skin sheen, and physically accurate subsurface scattering. Soft reflective shine appears across the exposed shoulder, face, lips, and hand due to controlled editorial illumination. Natural CGI skin texture without excessive smoothing, maintaining polished Blender-style material realism.
+
+LIGHTING
+
+Soft frontal studio lighting combined with dramatic side illumination. Warm highlights define the eyes, lips, skin, bandage texture, and silver jewelry while subtle shadows deepen the facial contours. Controlled contrast creates a cinematic Halloween fashion atmosphere with polished beauty-editorial lighting.
+
+ENVIRONMENT
+
+Minimal neutral gray studio background with a soft gradient and subtle atmospheric shadows. Clean surroundings keep the focus on the female avatar, dramatic mummy bandages, smoky makeup, long black hair, and theatrical Halloween details.
+
+MOOD & AESTHETIC
+
+Luxury gothic Halloween aesthetic mixed with mummy-inspired fashion, dark beauty editorial styling, modern influencer culture, and premium virtual-avatar rendering. Mysterious, seductive, cinematic, elegant, dramatic, polished, and high-status atmosphere inspired by luxury Halloween makeup photography.
+
+STYLE & RENDER QUALITY
+
+Ultra-photorealistic Blender Cycles CGI render, cinematic realism, Seedream 5.0 beauty rendering, 8K UHD quality, physically accurate lighting and materials, realistic skin micro-detail, IMVU-inspired beauty repaint style, high-fidelity female avatar rendering, realistic depth of field, glossy beauty aesthetic, polished virtual influencer atmosphere, advanced ray tracing, realistic reflections, luxury editorial lighting, ultra-clean cinematic render quality, and clearly fictional CGI avatar aesthetics instead of a real photograph.
+```
+
+        
+</pre>
+      <div id="copySuccess" class="copy-message">
+        PROMPT COPIADO!<br>MARQUE @vu.carolinna
+      </div>
+    </div>
+
+    <button id="copyBtn" onclick="copyAndAnimate('prompt1')">Copiar Prompt</button>
+    <div class="hint">Se o botão não funcionar, selecione o texto e copie manualmente.</div>
+  </div>
+
+</div>
+
+<footer>
+  MARQUE @vu.carolinna<br>
+  CAROLINA STELMANN • TEZZA PROMPTS — Conteúdo protegido.
+</footer>
+
+<script>
+  function copyAndAnimate(id) {
+    copyFallback(id);
+  }
+
+  function copyFallback(id) {
+    const el = document.getElementById(id);
+    const msg = document.getElementById('copySuccess');
+    
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    
+    try {
+      document.execCommand('copy');
+      el.style.opacity = '0.1';
+      msg.style.display = 'block';
+      setTimeout(() => {
+        el.style.opacity = '1';
+        msg.style.display = 'none';
+      }, 3000);
+    } catch (err) {
+      alert('Erro ao copiar. Por favor, copie manualmente.');
+    }
+    selection.removeAllRanges();
+  }
+
+  function createFallingSparkle() {
+    const sparkle = document.createElement('span');
+    const shapes = ['star', 'dot', 'diamond', 'cross'];
+    const colors = ['#ffffff', '#ffe8f5', '#f7d9ff', '#e8f7ff', '#fff3c7'];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+    sparkle.className = `falling-sparkle sparkle-${shape}`;
+    sparkle.style.left = `${Math.random() * 100}vw`;
+    sparkle.style.setProperty('--sparkle-size', `${3 + Math.random() * 8}px`);
+    sparkle.style.setProperty('--sparkle-color', color);
+    sparkle.style.setProperty('--sparkle-glow', color);
+    sparkle.style.setProperty('--drift', `${-140 + Math.random() * 280}px`);
+    sparkle.style.setProperty('--rotation', `${-240 + Math.random() * 480}deg`);
+    sparkle.style.setProperty('--fall-duration', `${4.5 + Math.random() * 6}s`);
+    sparkle.style.setProperty('--pulse-duration', `${0.7 + Math.random() * 1.2}s`);
+    sparkle.style.setProperty('--fall-delay', `${Math.random() * 0.8}s`);
+    sparkle.style.setProperty('--pulse-delay', `${Math.random() * 0.5}s`);
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 12000);
+  }
+
+  // Mantém uma quantidade suave e contínua de brilhos caindo.
+  setInterval(createFallingSparkle, 420);
+	  for (let i = 0; i < 10; i++) {
+	    setTimeout(createFallingSparkle, i * 240);
+	  }
+
+  // A música começa somente quando a visitante clica na entrada de vidro.
+  const backgroundMusic = document.getElementById('backgroundMusic');
+  const musicEntry = document.getElementById('musicEntry');
+  const enterMusicBtn = document.getElementById('enterMusicBtn');
+  enterMusicBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    backgroundMusic.play().catch(() => {});
+    musicEntry.classList.add('hidden');
+  });
+
+</script>
+
+</body>
+</html>
